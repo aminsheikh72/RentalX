@@ -36,11 +36,12 @@ const carSlice = createSlice({
       .addCase(getCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.cars = action.payload.cars;  // Cars array
-        state.totalPages = action.payload.pagination.pages;  // Total pages
-        state.currentPage = action.payload.pagination.page;  // Current page
+        state.cars = action.payload?.cars || [];
+        const pagination = action.payload?.pagination || {};
+        state.totalPages = pagination.pages || 1;   // Default 1 page
+        state.currentPage = pagination.page || 1;   // Default page 1
         state.isError = false;
-      })
+    })    
       .addCase(getCars.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
