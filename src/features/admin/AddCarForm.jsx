@@ -134,10 +134,10 @@ function AddCarForm() {
   const handleClose = () => navigate("/admin/cars");
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl w-full max-w-4xl shadow-xl">
+    <div className=" inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50 w-full">
+      <div className="bg-white rounded-2xl w-full shadow-xl">
         {/* Header (UNCHANGED) */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-100">
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-100">
           <div className="flex items-center gap-3">
             <div className="bg-red-100 p-2 rounded-lg">
               <Car className="w-6 h-6 text-red-600" />
@@ -154,10 +154,10 @@ function AddCarForm() {
           </button>
         </div>
 
-        <form className="p-6" onSubmit={handleSubmit}>
+        <form className="p-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* LEFT COLUMN (ALL FIELDS UNCHANGED) */}
-            <div className="space-y-6">
+            <div className=" space-y-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                   <Car size={18} />
@@ -258,63 +258,24 @@ function AddCarForm() {
                   placeholder="Enter number of seats"
                 />
               </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                  <Speedometer size={18} />
-                  Mileage (km/l)
-                </label>
-                <input
-                  type="number"
-                  name="mileage"
-                  value={formData.mileage}
-                  onChange={handleChange}
-                  step="0.1"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
-                  placeholder="Enter mileage"
-                />
-              </div>
-
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                  Rate per Day ($)
-                </label>
-                <input
-                  type="number"
-                  value={formData.rate}
-                  name="rate"
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
-                  placeholder="Enter rate per day"
-                />
-              </div>
-           
-         
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-                  <Gauge size={18} />
-                  Transmission
-                </label>
-                <select
-                  value={formData.transmission}
-                  name="transmission"
-                  onChange={handleChange}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
-                >
-                  <option value="">Select transmission</option>
-                  <option value="Manual">Manual</option>
-                  <option value="Automatic">Automatic</option>
-                </select>
-              </div>
-
-              {/* ALL OTHER ORIGINAL FIELDS REMAIN EXACTLY THE SAME */}
-              {/* company, fuelType, category, registration fields... */}
-              
+              <div className="mt-4">
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+              Rental Status
+            </label>
+            <select
+              name="rental"
+              value={formData.rental}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+            >
+              <option value="available">Available</option>
+              <option value="rented">Rented</option>
+              <option value="maintenance">Maintenance</option>
+            </select>
+          </div>              
             </div>
 
-            {/* RIGHT COLUMN (ONLY IMAGE FIELD CHANGED) */}
-            <div className="space-y-6">
-              {/* NEW IMAGE UPLOAD COMPONENT */}
+            <div className="space-y-2">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                   <ImageIcon size={18} />
@@ -360,14 +321,53 @@ function AddCarForm() {
                   </div>
                 )}
               </div>
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                  <Speedometer size={18} />
+                  Mileage (km/l)
+                </label>
+                <input
+                  type="number"
+                  name="mileage"
+                  value={formData.mileage}
+                  onChange={handleChange}
+                  step="0.1"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                  placeholder="Enter mileage"
+                />
+              </div>
 
-           
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                  Rate per Day ($)
+                </label>
+                <input
+                  type="number"
+                  value={formData.rate}
+                  name="rate"
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                  placeholder="Enter rate per day"
+                />
+              </div>
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                  <Gauge size={18} />
+                  Transmission
+                </label>
+                <select
+                  value={formData.transmission}
+                  name="transmission"
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                >
+                  <option value="">Select transmission</option>
+                  <option value="Manual">Manual</option>
+                  <option value="Automatic">Automatic</option>
+                </select>
+              </div>
               
-            </div>
-          </div>
-
-          {/* DESCRIPTION AND RENTAL STATUS (UNCHANGED) */}
-          <div className="mt-8">
+              <div>
             <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               Description
             </label>
@@ -380,25 +380,21 @@ function AddCarForm() {
               placeholder="Enter car description"
             />
           </div>
+              
+            </div>
+          
+           
+         
+             
 
-          <div className="mt-4">
-            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-              Rental Status
-            </label>
-            <select
-              name="rental"
-              value={formData.rental}
-              onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
-            >
-              <option value="available">Available</option>
-              <option value="rented">Rented</option>
-              <option value="maintenance">Maintenance</option>
-            </select>
+          
           </div>
 
+          {/* DESCRIPTION AND RENTAL STATUS (UNCHANGED) */}
+          
+
           {/* SUBMIT BUTTONS (UNCHANGED) */}
-          <div className="flex justify-end gap-4 mt-8">
+          <div className="flex justify-end gap-4 mt-2">
             <button
               type="button"
               onClick={handleClose}
